@@ -17,12 +17,11 @@
     max-width: 100px;
     -webkit-appearance: none;
   }
+
   .input:focus {
     outline: #e08044 auto 1px;
   }
-  input:-webkit-autofill {
-    background-color: unset;
-  }
+
   .input::placeholder {
     color: #4e4e4e;
   }

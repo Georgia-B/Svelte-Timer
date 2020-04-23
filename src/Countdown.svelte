@@ -5,38 +5,46 @@
 
   let x;
   let countdownStarted = false;
-  let minutes;
-  let seconds;
+  let paused = false;
+  let minutes = null;
+  let seconds = null;
   $: total = Number(minutes) * 60 + Number(seconds);
 
-  let timer = {
-    minutes: 0,
-    seconds: 0
-  };
+  $: timerMinutes = minutes ? minutes : 0;
+  $: timerSeconds = seconds ? seconds : 0;
 
   function startTime() {
     console.log("Starting timer");
     countdownStarted = true;
+    paused = false;
+    total = Number(timerMinutes) * 60 + Number(timerSeconds);
+
     x = setInterval(() => {
-      timer.minutes = Math.floor(total / 60);
-      timer.seconds = Math.floor(total % 60);
-      total = total - 1;
+      timerMinutes = Math.floor(total / 60);
+      timerSeconds = Math.floor(total % 60);
 
       if (total <= 0) {
         clearInterval(x);
+        window.navigator.vibrate([300, 300, 300]);
+        let sound = document.getElementById("audio");
+        sound.play();
       }
+      total = total - 1;
     }, 1000);
   }
 
   function clearTime() {
-    console.log("Clearing timer");
+    clearInterval(x);
     countdownStarted = false;
+    paused = false;
     minutes = null;
     seconds = null;
+    let sound = document.getElementById("audio");
+    sound.pause();
   }
 
   function pauseTime() {
-    console.log("Pausing timer");
+    paused = true;
     clearInterval(x);
   }
 </script>
@@ -45,6 +53,7 @@
   .content {
     width: 100%;
     position: relative;
+    margin: 10px 0;
   }
   .container {
     display: flex;
@@ -64,15 +73,22 @@
 </style>
 
 <div class="content">
-  <div class={`container ${countdownStarted ? 'invisible' : ''}`}>
+  <form
+    autocomplete="off"
+    class={`container ${countdownStarted ? 'invisible' : ''}`}>
     <Input id="minutes" label="MINUTES" bind:value={minutes} />
     <Input id="seconds" label="SECONDS" bind:value={seconds} />
-  </div>
+  </form>
   <Display
-    minutes={timer.minutes}
-    seconds={timer.seconds}
+    minutes={timerMinutes}
+    seconds={timerSeconds}
     isVisible={countdownStarted} />
 </div>
-<Button label="Start" className="button-start" onClick={startTime} />
-<Button label="Pause" className="button-pause" onClick={pauseTime} />
+{#if !countdownStarted || paused}
+  <Button label="Start" className="button-start" onClick={startTime} />
+{/if}
+{#if countdownStarted && !paused}
+  <Button label="Pause" className="button-pause" onClick={pauseTime} />
+{/if}
 <Button label="Clear" className="button-clear" onClick={clearTime} />
+<audio id="audio" src="./sound.mp3" type="audio/mpeg" />
