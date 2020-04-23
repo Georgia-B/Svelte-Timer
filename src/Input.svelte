@@ -3,11 +3,18 @@
     id,
     placeholder = "00",
     value;
+
+  function onInput(event) {
+    let value = event.target.value;
+    if (value.length > 2) {
+      event.target.value = value.slice(0, 2);
+    }
+  }
 </script>
 
 <style>
   .input {
-    color: #383838;
+    color: #ffffff;
     border: none;
     font-size: 4em;
     background-color: unset;
@@ -19,11 +26,21 @@
   }
 
   .input:focus {
-    outline: #e08044 auto 1px;
+    outline: #c46628 auto 1px;
   }
 
   .input::placeholder {
-    color: #4e4e4e;
+    color: #e6e6e6;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 
   .label {
@@ -39,11 +56,12 @@
   <input
     class="input"
     {id}
-    type="numeric"
+    type="number"
     maxlength="2"
     min="0"
     max="99"
     {placeholder}
+    on:input={onInput}
     bind:value />
   <label for={id} class="label">{label}</label>
 </div>
