@@ -53,13 +53,13 @@
   .content {
     width: 100%;
     position: relative;
-    margin: 10px 0;
+    margin: 20px 0;
   }
   .container {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #383838;
+    color: #ffffff;
     transition: all ease-out 0.3s;
     opacity: 1;
     transform: scale(1);

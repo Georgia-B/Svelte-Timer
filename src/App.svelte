@@ -5,11 +5,11 @@
 
 <style>
   .title {
-    color: #383838;
     font-size: 2em;
   }
   .app {
-    background-color: #f79556;
+    background-color: #dd7d3f;
+    color: #ffffff;
     width: 100%;
     height: 100vh;
     align-items: center;
@@ -17,7 +17,7 @@
     display: flex;
   }
   .container {
-    width: 60%;
+    width: 75%;
     text-align: center;
   }
 </style>

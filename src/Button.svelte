@@ -4,12 +4,13 @@
 
 <style>
   .button {
-    border-radius: 25px;
-    background-color: #d6783c;
+    border-radius: 30px;
+    font-size: 1.2em;
+    background-color: #dd7d3f;
     color: white;
     border: 1px solid white;
-    width: 80px;
-    height: 50px;
+    width: 90px;
+    height: 60px;
     margin: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease-out;
@@ -18,7 +19,7 @@
   }
 
   .button:hover {
-    background-color: #ca6a2f;
+    background-color: #c46628;
   }
 
   .button:before {
