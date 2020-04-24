@@ -58,11 +58,11 @@
 
 <div class="container" class:visible={isVisible} class:animate={isFinished}>
   <div class="timer">
-    <div class="number">{minutes}</div>
+    <div class="number" id="minute-display">{minutes}</div>
     <div class="label">MINUTES</div>
   </div>
   <div class="timer">
-    <div class="number">{seconds}</div>
+    <div class="number" id="second-display">{seconds}</div>
     <div class="label">SECONDS</div>
   </div>
 </div>

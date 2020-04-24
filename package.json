@@ -6,7 +6,8 @@
     "dev": "webpack-dev-server --content-base public",
     "test": "jest src",
     "test:watch": "npm run test -- --watch",
-    "test:coverage": "jest src --coverage"
+    "test:coverage": "jest src --coverage",
+    "cypress:open": "cypress open"
   },
   "jest": {
     "transform": {
@@ -29,6 +30,7 @@
     "@testing-library/svelte": "^3.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
+    "cypress": "^4.4.1",
     "jest": "^25.4.0",
     "mini-css-extract-plugin": "^0.6.0",
     "serve": "^11.0.0",
