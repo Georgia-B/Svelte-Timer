@@ -91,4 +91,4 @@
   <Button label="Pause" className="button-pause" onClick={pauseTime} />
 {/if}
 <Button label="Clear" className="button-clear" onClick={clearTime} />
-<audio id="audio" src="./sound.mp3" type="audio/mpeg" />
+<audio id="audio" src="./sound.ogg" type="audio/ogg" />
