@@ -49,7 +49,8 @@ Bundled javascript size
 - 13.3kb uncompressed
 - 5.1kb gzipped
 
-Google Performance Audit
+### Google Performance Audit
 
 As of 25 April 2020
+
 ![](https://user-images.githubusercontent.com/18305854/80263358-7f9ecb00-86e4-11ea-9090-796193a6ba28.PNG)
