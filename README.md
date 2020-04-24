@@ -26,16 +26,21 @@ Navigate to [localhost:8080](http://localhost:8080).
 
 To run unit tests:
 ```bash
-npm run test
+npm run test:unit
 ```
 For unit test coverage report:
 ```bash
-npm run test:coverage
+npm run test:unit:coverage
 ```
 
 For Cypress integration tests
 ```bash
-npm run cypress:open
+npm run test:cypress
+```
+
+**Run all**
+```bash
+npm run test
 ```
 
 ## Performance
