@@ -2,6 +2,11 @@
   export let minutes,
     seconds,
     isVisible = false;
+
+  import { finished } from "./store.js";
+
+  let isFinished;
+  const subscribe = finished.subscribe(value => (isFinished = value));
 </script>
 
 <style>
@@ -18,6 +23,21 @@
     width: 100%;
     top: 0;
     z-index: -1;
+  }
+  .animate {
+    animation: scaleOut 2s infinite;
+  }
+
+  @keyframes scaleOut {
+    0% {
+      transform: scale(0.9);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(0.9);
+    }
   }
   .visible {
     position: relative;
@@ -36,7 +56,7 @@
   }
 </style>
 
-<div class={`container ${isVisible ? 'visible' : ''}`}>
+<div class="container" class:visible={isVisible} class:animate={isFinished}>
   <div class="timer">
     <div class="number">{minutes}</div>
     <div class="label">MINUTES</div>

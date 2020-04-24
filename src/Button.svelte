@@ -1,5 +1,10 @@
 <script>
   export let label, className, onClick;
+
+  import { finished } from "./store.js";
+
+  let isFinished;
+  const subscribe = finished.subscribe(value => (isFinished = value));
 </script>
 
 <style>
@@ -16,6 +21,10 @@
     transition: background-color 0.3s ease-out;
     overflow: hidden;
     position: relative;
+  }
+
+  .animate {
+    animation: backgroundChange 3s infinite;
   }
 
   .button:hover {
@@ -67,6 +76,9 @@
   }
 </style>
 
-<button on:click={onClick} class={`button ${className}`}>
+<button
+  on:click={onClick}
+  class={`button ${className}`}
+  class:animate={isFinished}>
   <div class="button-label">{label}</div>
 </button>

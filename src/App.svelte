@@ -1,6 +1,11 @@
 <script>
   import Timer from "./Timer.svelte";
   import Countdown from "./Countdown.svelte";
+
+  import { finished } from "./store.js";
+
+  let isFinished;
+  const subscribe = finished.subscribe(value => (isFinished = value));
 </script>
 
 <style>
@@ -20,9 +25,13 @@
     width: 75%;
     text-align: center;
   }
+
+  .animate {
+    animation: backgroundChange 3s infinite;
+  }
 </style>
 
-<div class="app">
+<div class="app" class:animate={isFinished}>
   <div class="container">
     <div class="title">Countdown Timer</div>
     <Countdown />

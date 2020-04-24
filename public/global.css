@@ -59,3 +59,24 @@ button:active {
 button:focus {
 	border-color: #666;
 }
+
+@keyframes backgroundChange {
+    0% {
+      background-color: #dd7d3f;
+    }
+    20% {
+      background-color: #e7ba59;
+    }
+    40% {
+      background-color: #3bce73;
+    }
+    60% {
+      background-color: #3bb8ce;
+    }
+    80% {
+      background-color: #d64676;
+    }
+    100% {
+      background-color: #dd7d3f;
+    }
+  }
