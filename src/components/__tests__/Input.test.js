@@ -33,7 +33,7 @@ describe("Input component", () => {
                 value
             }
         });
-        const input = result.container.getElementsByClassName("input")[0];
+        const input = result.container.getElementsByTagName("input")[0];
         expect(input).toHaveValue(value);
 
         fireEvent.input(input, { target: { value: "hi" } })

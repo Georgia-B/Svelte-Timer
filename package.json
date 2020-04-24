@@ -5,7 +5,8 @@
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "test:coverage": "jest src --coverage"
   },
   "jest": {
     "transform": {
