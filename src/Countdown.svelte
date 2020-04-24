@@ -3,8 +3,13 @@
   import Display from "./Display.svelte";
   import Input from "./Input.svelte";
 
+  import { finished } from "./store.js";
+
+  let isFinished;
+  const subscribe = finished.subscribe(value => (isFinished = value));
+
   let x;
-  let countdownStarted = false;
+  let started = false;
   let paused = false;
   let minutes = null;
   let seconds = null;
@@ -15,8 +20,9 @@
 
   function startTime() {
     console.log("Starting timer");
-    countdownStarted = true;
+    started = true;
     paused = false;
+    finished.set(false);
     total = Number(timerMinutes) * 60 + Number(timerSeconds);
 
     x = setInterval(() => {
@@ -25,6 +31,7 @@
 
       if (total <= 0) {
         clearInterval(x);
+        finished.set(true);
         window.navigator.vibrate([300, 300, 300]);
         let sound = document.getElementById("audio");
         sound.play();
@@ -35,8 +42,9 @@
 
   function clearTime() {
     clearInterval(x);
-    countdownStarted = false;
+    started = false;
     paused = false;
+    finished.set(false);
     minutes = null;
     seconds = null;
     let sound = document.getElementById("audio");
@@ -73,22 +81,17 @@
 </style>
 
 <div class="content">
-  <form
-    autocomplete="off"
-    class={`container ${countdownStarted ? 'invisible' : ''}`}>
+  <form autocomplete="off" class="container" class:invisible={started}>
     <Input id="minutes" label="MINUTES" bind:value={minutes} />
     <Input id="seconds" label="SECONDS" bind:value={seconds} />
   </form>
-  <Display
-    minutes={timerMinutes}
-    seconds={timerSeconds}
-    isVisible={countdownStarted} />
+  <Display minutes={timerMinutes} seconds={timerSeconds} isVisible={started} />
 </div>
-{#if !countdownStarted || paused}
+{#if !started || paused}
   <Button label="Start" className="button-start" onClick={startTime} />
 {/if}
-{#if countdownStarted && !paused}
+{#if started && !paused && !isFinished}
   <Button label="Pause" className="button-pause" onClick={pauseTime} />
 {/if}
 <Button label="Clear" className="button-clear" onClick={clearTime} />
-<audio id="audio" src="./sound.ogg" type="audio/ogg" />
+<audio loop id="audio" src="./sound.ogg" type="audio/ogg" />
