@@ -3,7 +3,7 @@
     seconds,
     isVisible = false;
 
-  import { finished } from "./store.js";
+  import { finished } from "./../store.js";
 
   let isFinished;
   const subscribe = finished.subscribe(value => (isFinished = value));

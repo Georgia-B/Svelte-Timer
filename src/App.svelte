@@ -1,6 +1,5 @@
 <script>
-  import Timer from "./Timer.svelte";
-  import Countdown from "./Countdown.svelte";
+  import Countdown from "./components/Countdown.svelte";
 
   import { finished } from "./store.js";
 
@@ -37,3 +36,4 @@
     <Countdown />
   </div>
 </div>
+<audio loop id="audio" src="./sound.ogg" type="audio/ogg" />

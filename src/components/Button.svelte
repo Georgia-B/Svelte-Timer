@@ -1,7 +1,9 @@
 <script>
-  export let label, className, onClick;
+  export let label,
+    onClick,
+    className = "";
 
-  import { finished } from "./store.js";
+  import { finished } from "./../store.js";
 
   let isFinished;
   const subscribe = finished.subscribe(value => (isFinished = value));
@@ -66,11 +68,11 @@
     transition: all 0.3s;
   }
 
-  .button-label {
+  .label {
     transition: all 0.3s;
   }
 
-  .button:hover > .button-label {
+  .button:hover > .label {
     transform: translateY(300%);
     opacity: 0;
   }
@@ -78,7 +80,7 @@
 
 <button
   on:click={onClick}
-  class={`button ${className}`}
+  class="button {className}"
   class:animate={isFinished}>
-  <div class="button-label">{label}</div>
+  <div class="label">{label}</div>
 </button>
