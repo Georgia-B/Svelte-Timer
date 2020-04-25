@@ -2,7 +2,8 @@
   export let label,
     id,
     placeholder = "00",
-    value;
+    value,
+    onChange;
 
   function onInput(event) {
     let value = event.target.value;
@@ -63,6 +64,7 @@
     max="99"
     {placeholder}
     on:input={onInput}
+    on:change={onChange}
     bind:value />
   <label for={id} class="label">{label}</label>
 </div>

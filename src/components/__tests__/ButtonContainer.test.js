@@ -1,13 +1,15 @@
 import { render } from '@testing-library/svelte';
 import ButtonContainer from "../ButtonContainer.svelte";
 
+jest.mock('../../store.js');
+import { finished } from "../../store.js";
+
 describe("Button component", () => {
     test("should render buttons correctly when timer not started", () => {
         const result = render(ButtonContainer, {
             props: {
                 started: false,
                 paused: false,
-                isFinished: false,
                 startTimer: jest.fn(),
                 pauseTimer: jest.fn(),
                 clearTimer: jest.fn()
@@ -25,7 +27,6 @@ describe("Button component", () => {
             props: {
                 started: true,
                 paused: false,
-                isFinished: false,
                 startTimer: jest.fn(),
                 pauseTimer: jest.fn(),
                 clearTimer: jest.fn()
@@ -43,7 +44,6 @@ describe("Button component", () => {
             props: {
                 started: false,
                 paused: true,
-                isFinished: false,
                 startTimer: jest.fn(),
                 pauseTimer: jest.fn(),
                 clearTimer: jest.fn()
@@ -57,11 +57,13 @@ describe("Button component", () => {
     });
 
     test("should render buttons correctly when timer finished", () => {
+        finished.subscribe = (fn) => {
+            fn(true);
+        };
         const result = render(ButtonContainer, {
             props: {
                 started: true,
                 paused: false,
-                isFinished: true,
                 startTimer: jest.fn(),
                 pauseTimer: jest.fn(),
                 clearTimer: jest.fn()

@@ -3,17 +3,17 @@
   import Display from "./Display.svelte";
   import Form from "./Form.svelte";
 
-  import { finished } from "./../store.js";
+  import { finished, minuteInput, secondInput } from "./../store.js";
 
-  let isFinished;
-  const subscribe = finished.subscribe(value => (isFinished = value));
+  let minutes, seconds, isFinished;
+  minuteInput.subscribe(value => (minutes = value));
+  secondInput.subscribe(value => (seconds = value));
+  finished.subscribe(value => (isFinished = value));
 
   let interval;
   let started = false;
   let paused = false;
 
-  let minutes = null;
-  let seconds = null;
   $: total = Number(minutes) * 60 + Number(seconds);
   $: timerMinutes = minutes ? minutes : 0;
   $: timerSeconds = seconds ? seconds : 0;
@@ -47,8 +47,10 @@
     started = false;
     paused = false;
     finished.set(false);
-    minutes = null;
-    seconds = null;
+    minuteInput.set(null);
+    secondInput.set(null);
+    timerSeconds = 0;
+    timerMinutes = 0;
     let sound = document.getElementById("audio");
     if (sound) {
       sound.pause();
@@ -70,11 +72,7 @@
 
 <div class="content">
   {#if !started}
-    <Form
-      bind:minutes
-      bind:seconds
-      onEnter={startTime}
-      allowOnEnter={!started && !paused} />
+    <Form onEnter={startTime} allowOnEnter={!started && !paused} />
   {/if}
   {#if started}
     <Display minutes={timerMinutes} seconds={timerSeconds} />
@@ -83,7 +81,6 @@
 <ButtonContainer
   {started}
   {paused}
-  {isFinished}
   startTimer={startTime}
   pauseTimer={pauseTime}
   clearTimer={clearTime} />

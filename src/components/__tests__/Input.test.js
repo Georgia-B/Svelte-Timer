@@ -6,11 +6,13 @@ describe("Input component", () => {
         const label = "Seconds";
         const id = "seconds";
         const value = 11;
+        const onChange = jest.fn();
         const result = render(Input, {
             props: {
                 label,
                 id,
-                value
+                value,
+                onChange
             }
         });
         const inputContainer = result.container.getElementsByClassName("input-container")[0];
@@ -26,11 +28,13 @@ describe("Input component", () => {
         const label = "Seconds";
         const id = "seconds";
         const value = 11;
+        const onChange = jest.fn();
         const result = render(Input, {
             props: {
                 label,
                 id,
-                value
+                value,
+                onChange
             }
         });
         const input = result.container.getElementsByTagName("input")[0];

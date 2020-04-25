@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -108,36 +108,15 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,56 +148,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;script&gt;
-  export let minutes,
-    seconds,
-    isVisible = <span class="branch-0 cbranch-no" title="branch not covered" >false;</span>
-&nbsp;
+  import { fade, scale } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
   import { finished } from "./../store.js";
+&nbsp;
+  export let minutes, seconds;
 &nbsp;
   let isFinished;
   const subscribe = finished.subscribe(value =&gt; (isFinished = value));
 &lt;/script&gt;
 &nbsp;
 &lt;style&gt;
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1em;
-    text-align: center;
-    transition: all ease-out 0.3s;
-    transform: scale(0.75);
-    opacity: 0;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    z-index: -1;
-  }
   .animate {
     animation: scaleOut 2s infinite;
   }
@@ -234,12 +186,6 @@
       transform: scale(0.9);
     }
   }
-  .visible {
-    position: relative;
-    opacity: 1;
-    transform: scale(1);
-    z-index: 1;
-  }
   .timer {
     margin: 20px;
   }
@@ -251,13 +197,16 @@
   }
 &lt;/style&gt;
 &nbsp;
-&lt;div class="container" class:visible={isVisible} class:animate={isFinished}&gt;
+&lt;div
+  class="countdown"
+  class:animate={isFinished}
+  transition:scale={{ duration: 500, opacity: 0, start: 0.75, easing: quintOut }}&gt;
   &lt;div class="timer"&gt;
-    &lt;div class="number"&gt;{minutes}&lt;/div&gt;
+    &lt;div class="number" id="minute-display"&gt;{minutes}&lt;/div&gt;
     &lt;div class="label"&gt;MINUTES&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class="timer"&gt;
-    &lt;div class="number"&gt;{seconds}&lt;/div&gt;
+    &lt;div class="number" id="second-display"&gt;{seconds}&lt;/div&gt;
     &lt;div class="label"&gt;SECONDS&lt;/div&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -268,7 +217,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Apr 24 2020 21:32:18 GMT+1200 (New Zealand Standard Time)
+                at Sat Apr 25 2020 15:16:35 GMT+1200 (New Zealand Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

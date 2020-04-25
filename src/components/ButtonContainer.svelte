@@ -1,7 +1,11 @@
 <script>
   import Button from "./Button.svelte";
+  import { finished } from "../store.js";
 
-  export let started, paused, isFinished, startTimer, pauseTimer, clearTimer;
+  export let started, paused, startTimer, pauseTimer, clearTimer;
+
+  let isFinished;
+  finished.subscribe(value => (isFinished = value));
 </script>
 
 <style>
