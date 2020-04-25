@@ -1,7 +1,9 @@
 <script>
+  import { scale } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
   import Input from "./Input.svelte";
 
-  export let minutes, seconds, isVisible, onEnter, allowOnEnter;
+  export let minutes, seconds, onEnter, allowOnEnter;
 
   function onKeyDown(event) {
     if (event.keyCode === 13 && allowOnEnter) {
@@ -10,28 +12,10 @@
   }
 </script>
 
-<style>
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    transition: all ease-out 0.3s;
-    opacity: 1;
-    transform: scale(1);
-  }
-  .invisible {
-    opacity: 0;
-    transform: scale(0.75);
-    position: absolute;
-    width: 100%;
-  }
-</style>
-
 <form
   autocomplete="off"
-  class="container"
-  class:invisible={!isVisible}
+  class="countdown"
+  transition:scale={{ duration: 500, opacity: 0, start: 0.75, easing: quintOut }}
   on:keydown={onKeyDown}>
   <Input id="minutes" label="MINUTES" bind:value={minutes} />
   <Input id="seconds" label="SECONDS" bind:value={seconds} />

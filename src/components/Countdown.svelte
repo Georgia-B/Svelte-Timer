@@ -1,5 +1,5 @@
 <script>
-  import Button from "./Button.svelte";
+  import ButtonContainer from "./ButtonContainer.svelte";
   import Display from "./Display.svelte";
   import Form from "./Form.svelte";
 
@@ -65,23 +65,25 @@
   .content {
     width: 100%;
     position: relative;
-    margin: 20px 0;
   }
 </style>
 
 <div class="content">
-  <Form
-    isVisible={!started}
-    bind:minutes
-    bind:seconds
-    onEnter={startTime}
-    allowOnEnter={!started && !paused} />
-  <Display isVisible={started} minutes={timerMinutes} seconds={timerSeconds} />
+  {#if !started}
+    <Form
+      bind:minutes
+      bind:seconds
+      onEnter={startTime}
+      allowOnEnter={!started && !paused} />
+  {/if}
+  {#if started}
+    <Display minutes={timerMinutes} seconds={timerSeconds} />
+  {/if}
 </div>
-{#if !started || paused}
-  <Button label="Start" className="button-start" onClick={startTime} />
-{/if}
-{#if started && !paused && !isFinished}
-  <Button label="Pause" className="button-pause" onClick={pauseTime} />
-{/if}
-<Button label="Clear" className="button-clear" onClick={clearTime} />
+<ButtonContainer
+  {started}
+  {paused}
+  {isFinished}
+  startTimer={startTime}
+  pauseTimer={pauseTime}
+  clearTimer={clearTime} />

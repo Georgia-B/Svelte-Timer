@@ -23,6 +23,7 @@
     transition: background-color 0.3s ease-out;
     overflow: hidden;
     position: relative;
+    outline: none;
   }
 
   .animate {

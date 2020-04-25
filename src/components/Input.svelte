@@ -45,6 +45,7 @@
 
   .label {
     font-size: 1.5em;
+    display: block;
   }
 
   .input-container {
